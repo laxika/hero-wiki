@@ -8,5 +8,5 @@ import lombok.Getter;
 public class EntryResponse {
 
     private String title;
-    private String markdown;
+    private String content;
 }

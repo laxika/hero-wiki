@@ -8,5 +8,5 @@ import lombok.Data;
 public class JsonEntryEntity implements EntryEntity {
 
     private String title;
-    private String markdown;
+    private String content;
 }

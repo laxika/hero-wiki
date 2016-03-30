@@ -16,7 +16,7 @@ public class EntryEntityToResponseTransformer {
     public EntryResponse transform(EntryEntity entryEntity) {
         return EntryResponse.builder()
             .title(entryEntity.getTitle())
-            .markdown(pegDownProcessor.markdownToHtml(entryEntity.getMarkdown()))
+            .content(pegDownProcessor.markdownToHtml(entryEntity.getContent()))
             .build();
     }
 }

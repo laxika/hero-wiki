@@ -6,7 +6,7 @@ public interface EntryEntity {
 
     String getTitle();
 
-    void setMarkdown(String markdown);
+    void setContent(String markdown);
 
-    String getMarkdown();
+    String getContent();
 }

@@ -1,4 +1,4 @@
 {
     "title": "Welcome",
-    "markdown": "This *is* a **test**."
+    "content": "This *is* a **test**."
 }
