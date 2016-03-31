@@ -2,11 +2,22 @@ package com.morethanheroic.entry.domain.entry.impl;
 
 import com.morethanheroic.entry.domain.entry.EntryEntity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@ToString
 public class JsonEntryEntity implements EntryEntity {
 
+    private String id;
+
+    @Setter
     private String title;
+
+    @Setter
     private String content;
+
+    private String parent;
+    private String[] children;
 }

@@ -1,0 +1,13 @@
+.wiki-entry .wiki-entry-header {
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.wiki-entry .wiki-entry-header h1 {
+    margin-top: 0;
+}
+
+.wiki-child-links {
+    margin-bottom: 20px;
+}

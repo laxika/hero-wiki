@@ -22,6 +22,7 @@ buildscript {
 dependencies {
     compile group: 'org.projectlombok', name: 'lombok', version: '1.16.6'
     compile 'org.pegdown:pegdown:1.6.0'
+    compile 'org.apache.commons:commons-lang3:3.4'
 
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     compile(group: 'org.springframework.boot', name: 'spring-boot-starter') {

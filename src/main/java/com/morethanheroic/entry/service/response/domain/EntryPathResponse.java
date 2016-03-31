@@ -5,9 +5,8 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class EntryResponse {
+public class EntryPathResponse {
 
     private String title;
-    private String content;
-    private EntryPathResponse[] path;
+    private String id;
 }

@@ -30,6 +30,11 @@ public class FilesystemEntryProvider implements EntryProvider {
         }
     }
 
+    @Override
+    public EntryEntity getParentOf(final EntryEntity entryEntity) {
+        return getEntity(entryEntity.getParent());
+    }
+
     private EntryEntity loadEntityFromFilesystem(final String id) throws IOException {
         return jsonObjectMapper.readValue(new File(path + "/" + id), JsonEntryEntity.class);
     }
