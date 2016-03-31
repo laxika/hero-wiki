@@ -3,5 +3,10 @@
     "title": "Home",
     "content": "This *is* a **test**. [[hello|Hello]]",
     "parent": null,
-    "children": ["hello"]
+    "children": [
+        "lorem1",
+        "lorem2",
+        "lorem3",
+        "lorem4"
+    ]
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 public class WikiLinkRenderer extends LinkRenderer {
 
     public Rendering render(WikiLinkNode node) {
-        //try {
         //Handle WikiLinks alternative format [[page|text]]
         String text = node.getText();
         String url = text;
@@ -18,10 +17,6 @@ public class WikiLinkRenderer extends LinkRenderer {
             text = text.substring(pos + 1);
         }
 
-        //url = "./" + URLEncoder.encode(url.replace(' ', '-'), "UTF-8") + ".html";
-        return new Rendering("#/entry/" + url, text).withAttribute("ui-sref", "entry({id: '" + url + "'})");
-        /*} catch (UnsupportedEncodingException e) {
-            throw new IllegalStateException();
-        }*/
+        return new Rendering("#/entry/" + url, text).withAttribute("ui-sref", "entry({id: '" + url.toLowerCase().replaceAll("\\s+","-") + "'})");
     }
 }

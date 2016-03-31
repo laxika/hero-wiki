@@ -1,5 +1,7 @@
 package com.morethanheroic.entry.domain.entry;
 
+import java.util.List;
+
 public interface EntryEntity {
 
     String getId();
@@ -12,7 +14,7 @@ public interface EntryEntity {
 
     String getContent();
 
-    String[] getChildren();
+    List<String> getChildren();
 
     String getParent();
 }

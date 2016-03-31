@@ -2,6 +2,8 @@ package com.morethanheroic.entry.service.provider.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
@@ -33,6 +35,17 @@ public class FilesystemEntryProvider implements EntryProvider {
     @Override
     public EntryEntity getParentOf(final EntryEntity entryEntity) {
         return getEntity(entryEntity.getParent());
+    }
+
+    @Override
+    public List<EntryEntity> getChildrenOf(final EntryEntity entryEntity) {
+        final List<EntryEntity> result = new ArrayList<>();
+
+        for(String childrenId : entryEntity.getChildren()) {
+            result.add(getEntity(childrenId));
+        }
+
+        return result;
     }
 
     private EntryEntity loadEntityFromFilesystem(final String id) throws IOException {

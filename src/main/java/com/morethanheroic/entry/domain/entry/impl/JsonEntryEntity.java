@@ -1,5 +1,7 @@
 package com.morethanheroic.entry.domain.entry.impl;
 
+import java.util.List;
+
 import com.morethanheroic.entry.domain.entry.EntryEntity;
 
 import lombok.Getter;
@@ -19,5 +21,5 @@ public class JsonEntryEntity implements EntryEntity {
     private String content;
 
     private String parent;
-    private String[] children;
+    private List<String> children;
 }
