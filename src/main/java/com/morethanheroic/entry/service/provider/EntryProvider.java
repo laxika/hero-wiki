@@ -11,4 +11,6 @@ public interface EntryProvider {
     EntryEntity getParentOf(EntryEntity entryEntity);
 
     List<EntryEntity> getChildrenOf(EntryEntity entryEntity);
+
+    List<EntryEntity> getChildrenOf(EntryEntity entryEntity, int count);
 }

@@ -13,4 +13,5 @@ public class EntryResponse {
     private final String content;
     private final List<EntryPathResponse> path;
     private final List<EntryChildrenResponse> children;
+    private final boolean hasMoreChildren;
 }

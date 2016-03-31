@@ -24,22 +24,7 @@
 		angular.module('herowiki', ['ui.router', ]).config(function ($stateProvider, $urlRouterProvider) {
                 $urlRouterProvider.otherwise('/entry/index');
 
-                $stateProvider/*.state({
-                    name: 'home',
-                    url: '/',
-                    templateUrl: './partial/home.html',
-                    resolve: {
-                        indexEntry: function ($http) {
-                            return $http.get('/entry/index').then(function (response) {
-                                return response.data;
-                            });
-                        }
-                    },
-                    controller: function ($scope, $sce, indexEntry) {
-                    	$scope.entry = indexEntry;
-                    	$scope.entry.content = $sce.trustAsHtml($scope.entry.content);
-                    }
-                })*/.state({
+                $stateProvider.state({
                     name: 'entry',
                     url: '/entry/:id',
                     templateUrl: './partial/home.html',

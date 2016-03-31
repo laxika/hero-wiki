@@ -19,6 +19,9 @@ import com.morethanheroic.entry.service.response.domain.EntryResponse;
 @Service
 public class EntryEntityToResponseTransformer {
 
+    private static final int CHILDREN_SHOWN = 3;
+    private static final int CHARACTERS_SHOWN_FROM_CHIELD_CONTENT = 90;
+
     @Autowired
     private PegDownProcessor pegDownProcessor;
 
@@ -31,15 +34,16 @@ public class EntryEntityToResponseTransformer {
             .content(pegDownProcessor.markdownToHtml(entryEntity.getContent(), new WikiLinkRenderer()))
             .path(buildPath(entryEntity))
             .children(buildChildren(entryEntity))
+            .hasMoreChildren(entryEntity.getChildren().size() > CHILDREN_SHOWN)
             .build();
     }
 
     private List<EntryPathResponse> buildPath(EntryEntity entryEntity) {
         final List<EntryPathResponse> resultAsList = Lists.newArrayList(
             EntryPathResponse.builder()
-                .id(entryEntity.getId())
-                .title(entryEntity.getTitle())
-                .build()
+                             .id(entryEntity.getId())
+                             .title(entryEntity.getTitle())
+                             .build()
         );
 
         EntryEntity nextEntity = entryEntity;
@@ -60,16 +64,26 @@ public class EntryEntityToResponseTransformer {
     private List<EntryChildrenResponse> buildChildren(EntryEntity entryEntity) {
         final List<EntryChildrenResponse> result = new ArrayList<>();
 
-        for(EntryEntity childEntity : entryProvider.getChildrenOf(entryEntity)) {
+        for(EntryEntity childEntity : entryProvider.getChildrenOf(entryEntity, CHILDREN_SHOWN)) {
             result.add(
                 EntryChildrenResponse.builder()
                     .id(childEntity.getId())
                     .title(childEntity.getTitle())
-                    .content(childEntity.getContent())
+                    .content(buildChildContent(childEntity))
                     .build()
             );
         }
 
         return result;
+    }
+
+    private String buildChildContent(EntryEntity childEntity) {
+        String content = childEntity.getContent();
+
+        if (content.length() > CHARACTERS_SHOWN_FROM_CHIELD_CONTENT) {
+            return content.substring(0, CHARACTERS_SHOWN_FROM_CHIELD_CONTENT) + "...";
+        }
+
+        return content;
     }
 }

@@ -1,0 +1,31 @@
+<ol class="breadcrumb">
+	<li ng-repeat="pathEntry in entry.path">
+		<a ng-if="!$last" ng-bind="pathEntry.title" href="/#/entry/{{pathEntry.id}}"></a>
+		<b ng-if="$last" ng-bind="pathEntry.title"></b>
+	</li>
+</ol>
+<div ng-if="entry.children.length > 0" class="wiki-child-links">
+	<div class="row">
+		<div ng-repeat="child in entry.children" class="col-lg-4">
+			<div class="media">
+				<div class="media-body">
+					<h4 class="media-heading"><a ui-sref="entry({id: child.id})" ng-bind="child.title"></a></h4>
+					<span ng-bind="child.content"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-if="entry.hasMoreChildren" class="row" style="margin-top: 20px;">
+		<div class="col-lg-12">
+			<button class="btn btn-primary btn-block">Load all children pages</button>
+		</div>
+	</div>
+</div>
+<div class="wiki-entry panel panel-default">
+	<div class="wiki-entry-header page-header">
+		<h1>{{entry.title}}</h1>
+	</div>
+
+	<div ng-bind-html="entry.content" class="panel-body">
+	</div>
+</div>
