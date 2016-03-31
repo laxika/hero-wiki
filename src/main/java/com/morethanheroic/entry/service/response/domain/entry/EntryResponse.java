@@ -1,4 +1,4 @@
-package com.morethanheroic.entry.service.response.domain;
+package com.morethanheroic.entry.service.response.domain.entry;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class EntryResponse {
 
     private final String title;
     private final String content;
-    private final List<EntryPathResponse> path;
-    private final List<EntryChildrenResponse> children;
+    private final List<EntryPathPartialResponse> path;
+    private final List<EntryChildrenPartialResponse> children;
     private final boolean hasMoreChildren;
 }

@@ -7,22 +7,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.morethanheroic.entry.domain.entry.EntryEntity;
 import com.morethanheroic.entry.service.provider.EntryProvider;
-import com.morethanheroic.entry.service.response.EntryResponseBuilder;
-import com.morethanheroic.entry.service.response.domain.entry.EntryResponse;
+import com.morethanheroic.entry.service.response.EntryChildrenResponseBuilder;
+import com.morethanheroic.entry.service.response.domain.children.EntryChildrenResponse;
 
 @RestController
-public class EntryController {
+public class EntryChildrenController {
+
+    @Autowired
+    private EntryChildrenResponseBuilder entryChildrenResponseBuilder;
 
     @Autowired
     private EntryProvider entryProvider;
 
-    @Autowired
-    private EntryResponseBuilder entryResponseBuilder;
-
-    @RequestMapping(value = "/entry/{entryId}")
-    public EntryResponse getEntry(@PathVariable String entryId) {
+    @RequestMapping(value = "/entry/{entryId}/child/")
+    public EntryChildrenResponse getEntry(@PathVariable String entryId) {
         final EntryEntity entryEntity = entryProvider.getEntity(entryId);
 
-        return entryResponseBuilder.build(entryEntity);
+        return entryChildrenResponseBuilder.build(entryEntity);
     }
 }

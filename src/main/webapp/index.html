@@ -30,18 +30,45 @@
                     templateUrl: './partial/home.html',
                     resolve: {
                         indexEntry: function ($http, $stateParams) {
-                        	console.log("id"+$stateParams.id);
                             return $http.get('/entry/'+$stateParams.id).then(function (response) {
                                 return response.data;
                             });
                         }
                     },
-                    controller: function ($scope, $sce, indexEntry) {
+                    controller: function ($scope, $sce, $http, $stateParams, indexEntry) {
                     	$scope.entry = indexEntry;
                     	$scope.entry.content = $sce.trustAsHtml($scope.entry.content);
+
+                    	$scope.loadChildren = function() {
+                            $http.get('/entry/'+$stateParams.id+'/child/').then(function (response) {
+                                $scope.entry.children = response.data.children;
+                                $scope.entry.childrenLoaded = true;
+                            });
+                    	};
                     }
                 });
          });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	</script>
 </head>
 <body ng-app="herowiki">

@@ -1,11 +1,11 @@
-package com.morethanheroic.entry.service.response.domain;
+package com.morethanheroic.entry.service.response.domain.entry;
 
 import lombok.Builder;
 import lombok.Getter;
 
 @Builder
 @Getter
-public class EntryChildrenResponse {
+public class EntryChildrenPartialResponse {
 
     private final String id;
     private final String title;
