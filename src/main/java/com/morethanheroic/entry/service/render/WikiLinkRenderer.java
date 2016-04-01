@@ -7,16 +7,35 @@ import org.springframework.stereotype.Service;
 @Service
 public class WikiLinkRenderer extends LinkRenderer {
 
+    private static final String WIKI_LINK_SEPARATOR = "|";
+
     public Rendering render(WikiLinkNode node) {
-        //Handle WikiLinks alternative format [[page|text]]
-        String text = node.getText();
-        String url = text;
-        int pos;
-        if ((pos = text.indexOf("|")) >= 0) {
-            url = text.substring(0, pos);
-            text = text.substring(pos + 1);
+        String innerWikiLinkText = node.getText();
+
+        return buildRendering(getText(innerWikiLinkText), getUrl(innerWikiLinkText));
+    }
+
+    private String getText(String innerWikiLinkText) {
+        int wikiLinkSeparatorPosition = innerWikiLinkText.indexOf(WIKI_LINK_SEPARATOR);
+        if (wikiLinkSeparatorPosition >= 0) {
+            return innerWikiLinkText.substring(wikiLinkSeparatorPosition + 1);
         }
 
-        return new Rendering("#/entry/" + url, text).withAttribute("ui-sref", "entry({id: '" + url.toLowerCase().replaceAll("\\s+","-") + "'})");
+        return innerWikiLinkText;
+    }
+
+    private String getUrl(String innerWikiLinkText) {
+        String result = innerWikiLinkText;
+
+        int wikiLinkSeparatorPosition = innerWikiLinkText.indexOf(WIKI_LINK_SEPARATOR);
+        if (wikiLinkSeparatorPosition >= 0) {
+            result = innerWikiLinkText.substring(0, wikiLinkSeparatorPosition);
+        }
+
+        return result.toLowerCase().replaceAll("\\s+", "-");
+    }
+
+    private Rendering buildRendering(String text, String url) {
+        return new Rendering("#/entry/" + url, text).withAttribute("ui-sref", "entry({id: '" + url + "'})");
     }
 }

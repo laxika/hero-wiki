@@ -4,6 +4,7 @@ version '1.0.0'
 apply plugin: 'java'
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -29,6 +30,8 @@ dependencies {
     compile(group: 'org.springframework.boot', name: 'spring-boot-starter') {
         exclude(module: 'commons-logging')
     }
+
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
 }
 
 apply plugin: 'spring-boot'
